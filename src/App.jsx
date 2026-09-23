@@ -5,13 +5,25 @@ import DatantryCard from './components/DatantryCard'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [users,setUser]=useState([{'name':'mani','age':23,'email':'mani@gmail.com','number':987654321}])
+  const [users,setUser]=useState([{name:'mani',age:23,email:'mani@gmail.com',number:987654321}]);
   const [popup,setPopup]=useState(false)
 
-  const addUser=(data)=>{
-        const res=setUser(...users,data);
-        console.log(res)
+
+const addUser = (data) => {
+  const newUser = { ...data, id: Date.now() }; 
+  setUser([...users, newUser]);
+};
+
+  const deleteUser=(id)=>{
+    setUser(users.filter((user)=>user.id!==id));
   }
+
+  const updateUser = (id, updatedData) => {
+  setUser((users) =>users.map((user) => user.id === id ? { ...user, ...updatedData } : user
+    )
+  );
+};
+
 
 
   return (
@@ -30,8 +42,8 @@ function App() {
    
     <div className='card-container'>
       {
-      users.map((user)=>{
-        <UserCard user={user}/>
+      users.map((user,index)=>{
+        return <UserCard key={index} user={user} deleteUser={deleteUser} updateUser={updateUser}/>
       })}
     </div>    
     </>
