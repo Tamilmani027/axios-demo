@@ -4,17 +4,17 @@ function UserCard({ user, deleteUser, updateUser }) {
   const [isEdit, setIsEdit] = useState(false);
 
   // Local editable state
-  const [name, setName] = useState(user.name);
-  const [age, setAge] = useState(user.age);
-  const [email, setEmail] = useState(user.email);
-  const [number, setNumber] = useState(user.number);
+  const [name, setName] = useState(user.Name);
+  const [age, setAge] = useState(user.Age);
+  const [email, setEmail] = useState(user.Email);
+  const [number, setNumber] = useState(user.MobileNumber);
 
   const handleDelete = () => {
     deleteUser(user.id);
   };
 
   const handleUpdate = () => {
-    updateUser(user.id, { name, age, email, number });
+    updateUser(user.id, { Name:name, Age:age, Email:email, MobileNumber:number });
     setIsEdit(false);
   };
 
@@ -65,10 +65,10 @@ function UserCard({ user, deleteUser, updateUser }) {
         </>
       ) : (
         <>
-          <p>Name : {user.name}</p>
-          <p>Age : {user.age}</p>
-          <p>Email : {user.email}</p>
-          <p>Mobile : {user.number}</p>
+          <p>Name : {user.Name}</p>
+          <p>Age : {user.Age}</p>
+          <p>Email : {user.Email}</p>
+          <p>Mobile : {user.MobileNumber}</p>
           <div className='userbtn'>
             <button className='btn-edit' onClick={() => setIsEdit(true)}>Edit</button>
             <button className='btn-delete' onClick={handleDelete}>Delete</button>
